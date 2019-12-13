@@ -79,7 +79,17 @@ class _AddContactFormState extends State<AddContactForm> {
                     if (_formKey.currentState.validate()){
                         _formKey.currentState.save();
                         Contact.contacts.add(Contact(name,phone));
-                        Navigator.pop(context);
+
+
+                    var snackBar = Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text("$name hes been saved..."),
+                      duration: Duration(microseconds: 500),
+                        ));
+
+                    snackBar.closed.then((_){
+                      Navigator.pop(context);
+                    });
+
                     }
                 },
               )
